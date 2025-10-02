@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu Drinks</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="css/estilo.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<style>
+/* Ajustes del carrito */
+.carrito-item { display: flex; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding: 8px 0; }
+.carrito-item img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; margin-right: 10px; }
+.carrito-item button { background: red; color: white; border: none; padding: 4px 8px; border-radius: 5px; cursor: pointer; }
+#btn-carrito { position: fixed; bottom: 20px; right: 20px; background: #28a745; color: white; padding: 12px 20px; border: none; border-radius: 50px; cursor: pointer; z-index: 1000; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+        <div class="nav-wrapper  blue-grey darken-4">
+            <a href="index.html" class="brand-logo center">Menu Digital</a>
+            
+            </ul>
+       
+        
+        </div>
+    </nav>
+
+
+
+
+
+<div class="container">
+  <section class="section">
+    
+    <div class="row" id="productos-container">
+
+<div class="col m12 s12">
+  
+   <!--1200x400px-->
+   <div id="banner2" data-aos="fade-down">
+          
+    <img src="img/drinksbanner.png" style="width: 100%; height: auto; object-fit: cover;">
+
+  </div>
+
+
+</div>
+
+
+      <!-- Los productos se generarán dinámicamente con JS -->
+    </div>
+  </section>
+</div>
+
+<!-- Botón flotante Carrito -->
+<button id="btn-carrito" onclick="abrirCarrito()" href="#cartModal" class="modal-trigger"> Ver Carrito</button>
+
+<!-- Modal Carrito -->
+<div id="cartModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarCarrito()">&times;</span>
+    <h4>Tu Carrito</h4>
+    <div id="carrito-items"></div>
+    <h5 id="cartTotal" class="right">Total: L.0</h5>
+    <button class="btn green" onclick="cotizarWhatsApp()">Cotizar por WhatsApp</button>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close btn red">Cerrar</a>
+  </div>
+</div>
+
+<!-- Modal Personalización -->
+<div id="personalizarModal" class="modal">
+  <div class="modal-content">
+    <h5 id="modal-titulo" class="center-align">Personalizar Producto</h5>
+    
+    <h6>Cantidad</h6>
+    <div class="input-field">
+      <input type="number" id="cantidad" min="1" value="1" />
+    </div>
+
+    <h6>Tamaño</h6>
+    <div class="opciones-group" id="opciones-tamano">
+      <label class="opcion-card">
+        <input type="radio" name="tamano" value="Normal" />
+        <span class="opcion-text">Normal</span>
+      </label>
+      <label class="opcion-card">
+        <input type="radio" name="tamano" value="Grande" />
+        <span class="opcion-text">Grande (+L.50)</span>
+      </label>
+    </div>
+    
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close btn red">Cancelar</a>
+    <a href="#!" class="btn green" onclick="confirmarPersonalizacion()">Agregar</a>
+  </div>
+</div>
+
+
+
+
+<footer class="page-footer black">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Tienda online </h5>
+        <p class="grey-text text-lighten-4">Tu mejor opción, tu tienda, tu casa.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Enlaces de nuestras redes sociales</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="https://www.facebook.com">Facebook</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/">Instagram</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://wa.link/372fjk">Whatsapp</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright center">
+    <div class="container">© 2025 Hector Rodriguez</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="js/admin.js"></script>
+
+<!-- Menu lateral-->
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(elems); 
+        });
+
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        });
+    </script>
+
+
+</body>
+</html>
