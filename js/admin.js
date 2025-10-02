@@ -17,7 +17,7 @@ const productos = [
   { id: 7, nombre: "Granizado Fresa", precio: 120, imagen: "img/granizado2.png", categoria: "Granizado" },
   { id: 8, nombre: "Granizado Limon", precio: 150, imagen: "img/granizado3.png", categoria: "Granizado" },
   { id: 9, nombre: "Frappe Caramelo", precio: 150, imagen: "img/frappe1.png", categoria: "Frappe" },
-  { id: 9, nombre: "Frappe Dulce", precio: 150, imagen: "img/frappe2.png", categoria: "Frappe" },
+  { id: 9, nombre: "Frappe De Dulce", precio: 150, imagen: "img/frappe2.png", categoria: "Frappe" },
 ];
 
 // Renderizar productos por categoría
@@ -184,3 +184,4 @@ document.addEventListener("DOMContentLoaded", function () {
   AOS.init({ duration: 1000, once: true });
   renderProductos(); // 🚀 Renderizamos productos agrupados
 });
+
