@@ -6,62 +6,55 @@ if (localStorage.getItem("carrito")) {
   actualizarCarrito();
 }
 
-
-
-
-
-
-
-
-
-
-
-// Lista de productos
+// Lista de productos con categorías
 const productos = [
-  { id: 1, nombre: "Drink Limon", precio: 100, imagen: "img/drink5.png" },
-  { id: 2, nombre: "Drink Piña", precio: 100, imagen: "img/drink4.png" },
-  { id: 3, nombre: "Drink Maracuya", precio: 100, imagen: "img/drink3.png" },
-  { id: 4, nombre: "Drink Fresa", precio: 100, imagen: "img/drink2.png" },
-  { id: 5, nombre: "Drink Mora", precio: 100, imagen: "img/drink1.png" },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  { id: 1, nombre: "Drink Limon", precio: 100, imagen: "img/drink5.png", categoria: "Bebida" },
+  { id: 2, nombre: "Drink Piña", precio: 100, imagen: "img/drink4.png", categoria: "Bebida" },
+  { id: 3, nombre: "Drink Maracuya", precio: 100, imagen: "img/drink3.png", categoria: "Bebida" },
+  { id: 4, nombre: "Drink Fresa", precio: 100, imagen: "img/drink2.png", categoria: "Bebida" },
+  { id: 5, nombre: "Drink Mora", precio: 100, imagen: "img/drink1.png", categoria: "Bebida" },
+  { id: 6, nombre: "Granizado Mora", precio: 120, imagen: "img/granizado1.png", categoria: "Granizado" },
+  { id: 7, nombre: "Granizado Fresa", precio: 120, imagen: "img/granizado2.png", categoria: "Granizado" },
+  { id: 8, nombre: "Granizado Limon", precio: 150, imagen: "img/granizado3.png", categoria: "Granizado" },
+  { id: 9, nombre: "Frappe Caramelo", precio: 150, imagen: "img/frappe1.png", categoria: "Frappe" },
+  { id: 9, nombre: "Frappe Dulce", precio: 150, imagen: "img/frappe2.png", categoria: "Frappe" },
 ];
 
-const contenedor = document.getElementById("productos-container");
-productos.forEach((producto) => {
-  const col = document.createElement("div");
-  col.className = "col s12 m4";
-  col.setAttribute("data-aos", "fade-up");
-  col.innerHTML = `
-    <div class="card hoverable" style="border-radius:10px; height:auto;">
-      <div class="card-image">
-        <img src="${producto.imagen}" style="height:220px; object-fit:cover; border-radius:10px 10px 0 0;">
+// Renderizar productos por categoría
+function renderProductos() {
+  const categorias = {
+    "Bebida": document.getElementById("bebidas-container"),
+    "Granizado": document.getElementById("granizados-container"),
+    "Frappe": document.getElementById("frappes-container"),
+    "Granitas": document.getElementById("Granitas-container"),
+  };
+
+  // limpiar contenedores antes de cargar
+  Object.values(categorias).forEach(c => c.innerHTML = "");
+
+  productos.forEach((producto) => {
+    const col = document.createElement("div");
+    col.className = "col s6 m4";
+    col.setAttribute("data-aos", "fade-up");
+    col.innerHTML = `
+      <div class="card hoverable" style="border-radius:10px; height:auto;">
+        <div class="card-image">
+          <img src="${producto.imagen}" style="height:auto; object-fit:cover; border-radius:10px 10px 0 0;">
+        </div>
+        <div class="card-content center-align" style="padding:10px;">
+          <span class="card-title" style="font-size:18px;">${producto.nombre}</span>
+          <p style="margin:5px 0;">L.${producto.precio}</p>
+        </div>
+        <div class="card-action center teal orange" style="border-radius:0 0 10px 10px;">
+          <a href="#!" class="white-text" onclick="abrirPersonalizar(${producto.id})">
+            Personalizar & Agregar
+          </a>
+        </div>
       </div>
-      <div class="card-content center-align" style="padding:10px;">
-        <span class="card-title" style="font-size:18px;">${producto.nombre}</span>
-        <p style="margin:5px 0;">L.${producto.precio}</p>
-      </div>
-      <div class="card-action center teal orange" style="border-radius:0 0 10px 10px;">
-        <a href="#!" class="white-text" onclick="abrirPersonalizar(${producto.id})">
-          Personalizar & Agregar
-        </a>
-      </div>
-    </div>
-  `;
-  contenedor.appendChild(col);
-});
+    `;
+    categorias[producto.categoria].appendChild(col);
+  });
+}
 
 let productoSeleccionado = null;
 
@@ -92,29 +85,10 @@ function confirmarPersonalizacion() {
     return;
   }
 
-
-
-
-
-
-
-
   let precioFinal = productoSeleccionado.precio;
   if (tamano === "Grande") {
-    precioFinal += 50; // 🔥 Suplemento por tamaño grande
+    precioFinal += 20; // 🔥 Suplemento por tamaño grande
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
   carrito.push({
     ...productoSeleccionado,
@@ -204,7 +178,9 @@ function cotizarWhatsApp() {
   window.open(url, "_blank");
 }
 
+// Inicializar al cargar
 document.addEventListener("DOMContentLoaded", function () {
   M.Modal.init(document.querySelectorAll(".modal"));
   AOS.init({ duration: 1000, once: true });
+  renderProductos(); // 🚀 Renderizamos productos agrupados
 });
